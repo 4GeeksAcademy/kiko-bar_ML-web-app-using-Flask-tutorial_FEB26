@@ -15,5 +15,6 @@ xgboost
 
 # Core Data Science
 pandas>=2.0.0
+nltk>=3.9
 # Visualization & Notebook support
 ipykernel
