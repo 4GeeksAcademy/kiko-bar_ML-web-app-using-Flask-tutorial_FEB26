@@ -2,10 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ML Web App</title>
+    <title>Career Recommender</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; line-height: 1.6; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; }
+        select, input { width: 100%; padding: 8px; margin-top: 5px; }
+        button { background: #007BFF; color: white; padding: 10px 15px; border: none; cursor: pointer; width: 100%; }
+        button:hover { background: #0056b3; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to ML Web App</h1>
+    <h2>Who is your Census Twin?</h2>
+    <p>Enter your profile to find similar career paths from the database.</p>
+    
+    <form action="/recommend" method="POST">
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="number" name="age" required min="17" max="90">
+        </div>
+        
+        <div class="form-group">
+            <label>Education:</label>
+            <select name="education">
+                <option value="Bachelors">Bachelors</option>
+                <option value="HS-grad">HS-grad</option>
+                <option value="Masters">Masters</option>
+                <option value="Some-college">Some-college</option>
+                </select>
+        </div>
+
+        <div class="form-group">
+            <label>Hours per Week:</label>
+            <input type="number" name="hours_per_week" required min="1" max="99">
+        </div>
+
+        <button type="submit">Find Recommendations</button>
+    </form>
 </body>
 </html>

@@ -1,18 +1,26 @@
+from flask import Flask, request, render_template
 import pandas as pd
+import joblib
 
-# 1. Load the dataset
-# Make sure the path to the 'adult-census-income.csv' is correct
-df = pd.read_csv('adult-census-income.csv')
+app = Flask(__name__)
 
-# 2. Cleanup: Remove rows with '?' (often used in this dataset for missing data)
-df = df.replace('?', pd.NA).dropna()
+# Load the "Brain" and the Data
+model = joblib.load('./models/career_recommender.pkl')
+vector_cols = joblib.load('./models/vector_cols.pkl')
+df_cleaned = pd.read_csv('./data/processed/adult-census-income-cleaned.csv')
 
-# 3. Decision: We keep 'income' as text (<=50K / >50K) for the UI
-# But we won't fit the model on ONLY high earners, per our previous decision.
+@app.route('/')
+def index():
+    # This will show your input form (HTML)
+    return render_template('index.html')
 
-# 4. Feature Selection: Keep the columns we actually want to use
-columns_to_keep = ['age', 'education', 'marital.status', 'occupation', 'hours.per.week', 'income']
-df = df[columns_to_keep]
+@app.route('/recommend', methods=['POST'])
+def recommend():
+    # 1. Get data from the web form
+    # 2. Vectorize the user input
+    # 3. model.kneighbors() to find the match
+    # 4. Return the result to a new page
+    return "Recommendation results will go here!"
 
-print("Step 1 Complete: Data loaded and cleaned.")
-print(df.head())
+if __name__ == '__main__':
+    app.run(debug=True)
