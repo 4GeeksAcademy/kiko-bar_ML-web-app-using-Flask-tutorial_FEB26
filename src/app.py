@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # This works on your computer AND on Render!
 MODEL_PATH = os.path.join(BASE_DIR, '..', 'models', 'career_recommender.pkl')
 VECTOR_COLS_PATH = os.path.join(BASE_DIR, '..', 'models', 'vector_cols.pkl')
-DATA_PATH = os.path.join(BASE_DIR, '..', '/data/processed', 'adult-census-income-cleaned.csv')
+DATA_PATH = os.path.join(BASE_DIR, '..', 'data', 'processed', 'adult-census-income-cleaned.csv')
 
 # 3. Load your files using these absolute paths
 model = joblib.load(MODEL_PATH)
